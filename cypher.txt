@@ -1,0 +1,24 @@
+1) Return the titles of movies acted in by 'Kevin Bacon'.
+MATCH (p:Person)-[a:ACTED_IN]-(m:Movie) WHERE p.name = 'Kevin Bacon' RETURN m
+
+2) Return the count of the actors that act in some movie with Keven Bacon.
+MATCH (p:Person)-[a:ACTED_IN]-(m:Movie) WHERE p.name = 'Kevin Bacon'
+    MATCH (x:Person)-[y:ACTED_IN]-(z:Movie) WHERE z = m RETURN COUNT(x)
+
+3) Return the actors that are at three degrees or less of separation from 'Kevin Bacon'. 
+    One degree of separation are actors who act in a movie with Kevin Bacon, and two degrees of 
+    separation are actors who act in a movie with some actor who act in a movie with Kevin Bacon, etc.
+
+
+4) Return the persons and movies such that the person both directed and acted in the movie.
+
+
+5) Return the actors who have acted in 4 or more movies.
+
+
+6) Return the shortest path between Kevin Bacon and Emile Hirsch
+
+
+7) Return the actors that have acted in all of the movies that Emile Hirsch acts in. You may want to form a 
+    collection of 'Emile Hirsch' movies and a collection of movies acted in by another person and then use apoc.coll.containsAll 
+    to determine if one collection contains (at least) all of the movies that the other has.
